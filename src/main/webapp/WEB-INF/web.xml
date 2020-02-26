@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+    <display-name>ElectronicVotingSystem</display-name>
+    
+    <!-- Servlets -->
+	<servlet>
+		<servlet-name>ElectionDateTimeServlet</servlet-name>
+		<servlet-class>com.dsam.appengine.servlets.ElectionDateTimeServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>ElectionDateTimeServlet</servlet-name>
+		<url-pattern>/admin/setdate</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CandidateServlet</servlet-name>
+		<servlet-class>com.dsam.appengine.servlets.CandidateServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CandidateServlet</servlet-name>
+		<url-pattern>/admin/candidates</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>VotingServlet</servlet-name>
+		<servlet-class>com.dsam.appengine.servlets.VotingServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>VotingServlet</servlet-name>
+		<url-pattern>/voting</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>EditCandidateServlet</servlet-name>
+		<servlet-class>com.dsam.appengine.servlets.EditCandidateServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>EditCandidateServlet</servlet-name>
+		<url-pattern>/admin/edit</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ImportEmailServlet</servlet-name>
+		<servlet-class>com.dsam.appengine.servlets.ImportEmailServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>ImportEmailServlet</servlet-name>
+		<url-pattern>/admin/upload</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>EmailDispatchServlet</servlet-name>
+		<servlet-class>com.dsam.appengine.servlets.EmailDispatchServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>EmailDispatchServlet</servlet-name>
+		<url-pattern>/admin/notify</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ElectionResultServlet</servlet-name>
+		<servlet-class>com.dsam.appengine.servlets.ElectionResultServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>ElectionResultServlet</servlet-name>
+		<url-pattern>/result</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ErrorHandlerServlet</servlet-name>
+		<servlet-class>com.dsam.appengine.servlets.ErrorHandlerServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>ErrorHandlerServlet</servlet-name>
+		<url-pattern>/errorhandler</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CronJobServlet</servlet-name>
+		<servlet-class>com.dsam.appengine.servlets.CronJobServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>CronJobServlet</servlet-name>
+		<url-pattern>/notify</url-pattern>
+	</servlet-mapping>
+    <!-- JSPs -->
+    
+    <servlet>
+        <servlet-name>NewCandidate</servlet-name>
+        <jsp-file>/newcandidate.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>NewCandidate</servlet-name>
+        <url-pattern>/admin/new</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+    	<servlet-name>Voters</servlet-name>
+    	<servlet-class>com.dsam.appengine.servlets.ImportEmailServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+    	<servlet-name>Voters</servlet-name>
+    	<url-pattern>/admin/voters</url-pattern>
+    </servlet-mapping>
+    
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>setdate</web-resource-name>
+            <url-pattern>/admin/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+    
+    
+    <error-page>
+    <location>/errorhandler</location>
+	</error-page>
+	
+</web-app>
+ 	
